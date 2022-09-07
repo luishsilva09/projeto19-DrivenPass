@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { newUser } from "../services/usersServices";
+import * as usersServices from "../services/usersServices";
 
 export interface INewUser {
     name:string;
@@ -9,15 +9,16 @@ export interface INewUser {
 }
 
 export type insertUser = Omit<INewUser, "repeatPassword">
-
+export type signinData = Omit<INewUser, "repeatPassword" | "name">
 
 export async function signup(req:Request,res:Response){
     const newUserData: INewUser= req.body;
-    await newUser(newUserData)
+    await usersServices.newUser(newUserData)
     res.status(201).send('Usuario criado com sucesso')
 }
 
 export async function signin(req:Request,res:Response){
-    const userData: insertUser = req.body
-    res.send('fazervlogin')
+    const signinData: signinData = req.body;
+    const userData = await usersServices.signin(signinData)
+    res.send(userData)
 }

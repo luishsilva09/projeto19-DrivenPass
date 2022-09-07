@@ -12,3 +12,7 @@ export async function insertNewUser(userData:insertUser ){
         password:userData.password   
     }})
 }
+
+export async function inserSession(){
+    
+}

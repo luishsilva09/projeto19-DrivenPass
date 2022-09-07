@@ -1,9 +1,15 @@
-import { INewUser } from "../controllers/usersControllers";
+import { INewUser, signinData } from "../controllers/usersControllers";
 import * as usersRepository from '../repositories/usersRepository'
 import bcrypt from 'bcrypt';
 
+async function findUser(email:string){
+    return await usersRepository.findUser(email)
+}
+
 export async function newUser(newUserData:INewUser) {
-    await findUser(newUserData.email);
+    const userData = await findUser(newUserData.email);
+    if(userData) throw {code:'Conflict', message:'Não autorizado'}
+
     const cryptPassword = bcrypt.hashSync(newUserData.password, 10)
     const inserData = {
         name:newUserData.name,
@@ -13,8 +19,11 @@ export async function newUser(newUserData:INewUser) {
     await usersRepository.insertNewUser(inserData)
 }
 
-async function findUser(email:string){
-    const userData = await usersRepository.findUser(email)
-    if(userData) throw {code:'Conflict', message:'Não autorizado'}
-    return userData 
+export async function signin(signinData:signinData) {
+    const userData = await findUser(signinData.email);
+    if(!userData) throw {code:'Conflict', message:'Verifique seus dados'};
+
+    const confirmPassword = bcrypt.compareSync(signinData.password, userData.password)
+
+    if(!confirmPassword) throw {code:'Conflict', message:'Verifique seus dados'};
 }
