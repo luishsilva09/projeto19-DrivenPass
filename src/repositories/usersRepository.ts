@@ -13,6 +13,8 @@ export async function insertNewUser(userData:insertUser ){
     }})
 }
 
-export async function inserSession(){
-    
+export async function insertSession(token:string){
+    await client.sessions.create({data:{
+        token
+    }})
 }

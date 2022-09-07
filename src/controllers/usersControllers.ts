@@ -13,7 +13,7 @@ export type signinData = Omit<INewUser, "repeatPassword" | "name">
 
 export async function signup(req:Request,res:Response){
     const newUserData: INewUser= req.body;
-    await usersServices.newUser(newUserData)
+    await usersServices.signup(newUserData)
     res.status(201).send('Usuario criado com sucesso')
 }
 

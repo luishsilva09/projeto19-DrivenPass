@@ -1,12 +1,17 @@
 import { INewUser, signinData } from "../controllers/usersControllers";
 import * as usersRepository from '../repositories/usersRepository'
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config()
+const secretKey = process.env.SECRET_KEY || 'muitosecreto'
 
 async function findUser(email:string){
     return await usersRepository.findUser(email)
 }
 
-export async function newUser(newUserData:INewUser) {
+export async function signup(newUserData:INewUser) {
     const userData = await findUser(newUserData.email);
     if(userData) throw {code:'Conflict', message:'Não autorizado'}
 
@@ -26,4 +31,9 @@ export async function signin(signinData:signinData) {
     const confirmPassword = bcrypt.compareSync(signinData.password, userData.password)
 
     if(!confirmPassword) throw {code:'Conflict', message:'Verifique seus dados'};
+
+    const token = jwt.sign(userData,secretKey)
+    await usersRepository.insertSession(token)
+
+    return(token)
 }
