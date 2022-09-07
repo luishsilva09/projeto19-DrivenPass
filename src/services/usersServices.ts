@@ -29,7 +29,6 @@ export async function signin(signinData:signinData) {
     if(!userData) throw {code:'Conflict', message:'Verifique seus dados'};
 
     const confirmPassword = bcrypt.compareSync(signinData.password, userData.password)
-
     if(!confirmPassword) throw {code:'Conflict', message:'Verifique seus dados'};
 
     const token = jwt.sign(userData,secretKey)

@@ -15,6 +15,5 @@ export default async function validToken(req:Request,res:Response,next:NextFunct
     jwt.verify(token,secretKey,function(err,decode){if(err) throw{code:'Invalid',message:err.message}});
     
     await tokenService.validToken(token)
-    res.locals.token = jwt.decode(token);
     next();
 }
