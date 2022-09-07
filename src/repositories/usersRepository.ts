@@ -1,4 +1,3 @@
-import { prisma } from "@prisma/client";
 import { insertUser } from "../controllers/usersControllers";
 import client from "../dbStrategy/db";
 
