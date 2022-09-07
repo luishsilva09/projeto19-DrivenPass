@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import "express-async-errors";
+import 'express-async-errors';
 import routes from './routes';
 import errorHandle from './middlewares/errorHandle';
 
