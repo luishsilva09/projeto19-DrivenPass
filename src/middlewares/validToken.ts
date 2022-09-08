@@ -1,6 +1,5 @@
 
 import {NextFunction, Request, Response} from 'express';
-import * as tokenService from '../services/tokenService';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
@@ -14,6 +13,5 @@ export default async function validToken(req:Request,res:Response,next:NextFunct
     const token = authorization.replace('Bearer ', '');
     jwt.verify(token,secretKey,function(err,decode){if(err) throw{code:'Invalid',message:err.message}});
     
-    await tokenService.validToken(token)
     next();
 }
