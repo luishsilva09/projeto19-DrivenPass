@@ -3,7 +3,7 @@ import * as interfaces from '../interfaces/credentialsInterfaces';
 import { crypt } from '../utils/crypt';
 
 export async function newCredential(credentialData:interfaces.ICredentialData,userData:interfaces.IuserData){
-    const findExistData = {
+    const findExistData = { 
         userId: userData.id,
         title:credentialData.title,
         credentialName:credentialData.credentialName,

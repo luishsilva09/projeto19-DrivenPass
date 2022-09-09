@@ -11,9 +11,3 @@ export async function insertNewUser(userData:insertUser ){
         password:userData.password   
     }})
 }
-
-export async function insertSession(token:string){
-    await client.sessions.create({data:{
-        token
-    }})
-}

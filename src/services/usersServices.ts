@@ -31,8 +31,7 @@ export async function signin(signinData:signinData) {
     const confirmPassword = bcrypt.compareSync(signinData.password, userData.password)
     if(!confirmPassword) throw {code:'Conflict', message:'Verifique seus dados'};
 
-    const token = jwt.sign(userData,secretKey)
-    await usersRepository.insertSession(token)
+    const token = jwt.sign({id:userData.id,name:userData.name},secretKey)
 
     return(token)
 }

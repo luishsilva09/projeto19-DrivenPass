@@ -12,5 +12,5 @@ export async function newCredential(req:Request, res:Response){
     const decodeToken:interfaces.IuserData = Object(jwt.decode(token || ''))
     await credentialServices.newCredential(credentialData,decodeToken)
 
-    res.status(201).send()
+    res.status(201).send() 
 }

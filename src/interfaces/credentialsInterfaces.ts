@@ -1,8 +1,6 @@
 export interface IuserData { 
     id:number;
     name:string;
-    email:string;
-    password:string;
     iat:number;
 }
 export interface ICredentialData {
@@ -12,7 +10,7 @@ export interface ICredentialData {
     rotule:string;
     url:string;
     userName:string;
-    password:string;
+    password:string; 
 }
 
 export interface IFindExistData{
