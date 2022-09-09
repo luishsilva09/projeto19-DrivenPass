@@ -7,7 +7,7 @@ import { newCredential } from '../schemas/credentialsSchemas';
 const credentialRoutes = Router();
 
 credentialRoutes.post('/credentials/create',validToken,schemaValidate(newCredential),credentialController.newCredential);
-credentialRoutes.get('/credentials/getCredebtial/:credentialId');
+credentialRoutes.get('/credentials/getCredetial',validToken,credentialController.findCredentials);
 credentialRoutes.delete('/credential/deleteCredential/:credentialId');
 
-export default credentialRoutes;
+export default credentialRoutes; 

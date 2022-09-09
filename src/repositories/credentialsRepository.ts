@@ -20,3 +20,14 @@ export async function existData(findData:IFindExistData){
 export async function insert(insertData:IinsertData){
     await client.credentials.create({data: insertData})
 }
+
+export async function findCredentialsById(credentialId:number){
+    return await client.credentials.findUnique({where:{id:credentialId}})
+}
+export async function allCredential(userId:number) {
+    return await client.credentials.findMany({
+        where:{
+            userId:userId
+        }
+    })
+}
