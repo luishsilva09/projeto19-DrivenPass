@@ -9,8 +9,6 @@ export async function existData(findData:IFindExistData){
                 {
                     OR:[
                         {title:findData.title },
-                        {rotule:findData.rotule },
-                        {credentialName:findData.credentialName}
                     ]
                 }
             ]

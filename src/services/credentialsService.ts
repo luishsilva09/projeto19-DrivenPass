@@ -6,8 +6,6 @@ export async function newCredential(credentialData:interfaces.ICredentialData,us
     const findExistData = { 
         userId: userData.id,
         title:credentialData.title,
-        credentialName:credentialData.credentialName,
-        rotule:credentialData.rotule
     } 
     const exist = await credentialRepository.existData(findExistData)
     if(exist.length !== 0) throw {code:'Conflict',message:'Dados já existentes'}

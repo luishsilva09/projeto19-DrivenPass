@@ -6,8 +6,6 @@ export interface IuserData {
 export interface ICredentialData {
     userId?:number;
     title:string;
-    credentialName:string;
-    rotule:string;
     url:string;
     userName:string;
     password:string; 
@@ -16,16 +14,12 @@ export interface ICredentialData {
 export interface IFindExistData{
     userId:number;
     title:string;
-    credentialName:string;
-    rotule:string;
 }
 
 export interface IinsertData {
     password: string;
     userId: number;
     title: string;
-    credentialName: string;
-    rotule: string;
     url: string;
     userName: string;
 }
