@@ -32,3 +32,8 @@ export async function findCredentials(credentialId:number,userId:number){
        
     }
 }
+
+export async function deleteCredential(credentialId:number,userId:number){
+    await findCredentials(credentialId,userId);
+    await credentialRepository.deleteCredential(credentialId)
+}

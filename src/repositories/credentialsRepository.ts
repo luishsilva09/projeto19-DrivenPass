@@ -31,3 +31,11 @@ export async function allCredential(userId:number) {
         }
     })
 }
+
+export async function deleteCredential(credentialId:number){
+    await client.credentials.delete({
+        where:{
+            id:credentialId
+        }
+    })
+}
