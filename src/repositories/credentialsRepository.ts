@@ -18,7 +18,7 @@ export async function existData(findData:IFindExistData){
 }
 
 export async function insert(insertData:IinsertData){
-    await client.credentials.create({data: insertData})
+    return await client.credentials.create({data: insertData})
 }
 
 export async function findCredentialsById(credentialId:number){

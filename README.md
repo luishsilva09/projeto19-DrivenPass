@@ -19,6 +19,8 @@
 
 # Features
 - Signup and signin
+- Create, find and delete credentials
+- Create, find and delete notes
 
 ##  API  Reference
 ### Signup
@@ -58,6 +60,161 @@ Response:
   token
 ```
 `token: came with string in format jsonwebtoken`
+
+</br>
+
+## Credentials
+
+### Create credential:
+
+```http
+  POST /credentials/create
+```
+
+Resquest:
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Body            | Type   | Description                    |
+|----------------|--------|--------------------------------|
+|`title`         |`string`|**Reuqired**. credential title  |
+|`credentialName`|`string`|**Reuqired**. credential name   |
+|`rotule`        |`string`|**Reuqired**. credential rotule |
+|`url`           |`string`|**Reuqired**. site url          |
+|`userName`      |`string`|**Reuqired**. username on site  |
+|`password`      |`string`|**Reuqired**. site password     |
+
+</br>
+
+`title/credentialName/rotule need to be unique for a user`
+
+### Find credential:
+
+```http
+  GET /credential/getCredential?{id=credentialId}
+  ```
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+|Query | Type   | Description        |
+|------|--------|--------------------|
+|`id`  |`string`| use credential id  |
+
+- To get all users credential you shuld not use query with creedential id.
+
+- With you need especfic credential you neet to use query with credential id.
+
+Response:
+
+```json
+{
+    "id": 1,
+    "userId": 1,
+    "title": "unique ",
+    "credentialName": "unique",
+    "rotule": "unique",
+    "url": "https://www.prisma.io/docs/concepts/components/prisma-schema/relations",
+    "userName": "luis",
+    "password": "1234"
+}
+```
+<p style="color:red"> **With you search for all user credential is going return for you array of object** </p>
+
+### Delete Credential:
+
+```http
+  GET /credential/deleteCredential/{credentialId}
+```
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Params          | Type   | Description                |
+|----------------|--------|----------------------------|
+|`credentialId`  |`number`|**Reuqired**. credential id |
+
+
+</br>
+
+## Notes
+
+### Create Note:
+
+```http
+  POST /notes/create
+```
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Body    | Type   | Description               |
+|--------|--------|---------------------------|
+|`title` |`string`|**Reuqired**. note title   |
+|`note`  |`string`| **Required**. note content|
+
+`title max length: 50`\
+`note max length: 100`
+
+### Find notes:
+
+```http
+  GET /notes/getNotes?{notesId=notesId}
+  ```
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+|Query | Type   | Description        |
+|------|--------|--------------------|
+|`notesId`  |`string`| use note id |
+
+- To get all users notes you shuld not use query with creedential id.
+
+- With you need especfic note you neet to use query with credential id.
+
+Response:
+
+```json
+{
+    "id": 5,
+    "title": "123sd",
+    "note": "nao sei oq dizer",
+    "userId": 2
+  }
+```
+<p style="color:red"> **With you search for all user credential is going return for you array of object** </p>
+</br>
+
+### Delete note:
+
+```http
+  GET /notes/deleteNote/{noteId}
+```
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Params          | Type   | Description                |
+|----------------|--------|----------------------------|
+|`noteId`  |`number`|**Reuqired**. note id|
+
+</br>
 
 ##  Environment  Variables
 

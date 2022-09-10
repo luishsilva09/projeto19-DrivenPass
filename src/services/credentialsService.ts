@@ -18,7 +18,7 @@ export async function newCredential(credentialData:interfaces.ICredentialData,us
         ...credentialData, 
         password:encryptPassword     
     }
-    await credentialRepository.insert(insertData)
+    return await credentialRepository.insert(insertData)
 }
 
 export async function findCredentials(credentialId:number,userId:number){

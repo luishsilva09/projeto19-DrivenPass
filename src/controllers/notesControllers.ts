@@ -7,8 +7,8 @@ import { IuserData } from '../interfaces/credentialsInterfaces';
 export async function newNote(req:Request,res:Response){
     const userInfo:IuserData = decodeToken(req.headers.authorization);
     const noteData:INoteData = req.body;
-    await noteService.newNote(noteData,userInfo.id)
-    res.status(201).send('Nota crada com sucesso')
+    const {id,title} = await noteService.newNote(noteData,userInfo.id)
+    res.status(201).send(`Criado com sucesso: id: ${id}, title:${title}`) 
 }
 
 export async function findNotes(req:Request,res:Response){

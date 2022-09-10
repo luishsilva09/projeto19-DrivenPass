@@ -8,9 +8,9 @@ import * as interfaces from '../interfaces/credentialsInterfaces'
 export async function newCredential(req:Request, res:Response){
     const credentialData:interfaces.ICredentialData = req.body;
     const userInfo:interfaces.IuserData = decodeToken(req.headers.authorization)
-    await credentialServices.newCredential(credentialData,userInfo)
+    const {id,title} = await credentialServices.newCredential(credentialData,userInfo)
 
-    res.status(201).send('Criado com sucesso') 
+    res.status(201).send(`Criado com sucesso: id: ${id}, title:${title}`) 
 }
 
 export async function findCredentials(req:Request, res:Response){

@@ -6,7 +6,7 @@ export async function newNote(noteData:INoteData,userId:number ){
     const existData = await noteRepository.existData(noteData.title,userId);
     if(existData.length !== 0) throw {code:'Conflict',message:'Dados já existentes'}
 
-    await noteRepository.insert(noteData,userId)
+    return await noteRepository.insert(noteData,userId)
 }
 
 export async function findNotes(noteId:number,userId:number){
