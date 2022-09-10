@@ -19,5 +19,8 @@ export async function findNotes(req:Request,res:Response){
 }
 
 export async function deleteNote(req:Request,res:Response){
+    const noteId:number = Number(req.params.noteId);
+    const userInfo:IuserData = decodeToken(req.headers.authorization);
+    await noteService.deleteNote(noteId,userInfo.id)
     res.status(200).send('Deletado com sucesso ')
 }

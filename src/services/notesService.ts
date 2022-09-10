@@ -19,3 +19,8 @@ export async function findNotes(noteId:number,userId:number){
         return await noteRepository.findAllNotes(userId)
     }
 }
+
+export async function deleteNote(noteId:number,userId:number){
+    await findNotes(noteId,userId);
+    await noteRepository.deleteNote(noteId)
+}

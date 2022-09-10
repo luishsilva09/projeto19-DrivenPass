@@ -8,6 +8,6 @@ const secureNotesRoutes = Router();
 
 secureNotesRoutes.post('/notes/create',validToken,schemaValidate(newNoteSchema),noteController.newNote);
 secureNotesRoutes.get('/notes/getNotes',validToken,noteController.findNotes);
-secureNotesRoutes.delete('/notes/deleteNote/:noteId')
+secureNotesRoutes.delete('/notes/deleteNote/:noteId',validToken,noteController.deleteNote)
 
 export default secureNotesRoutes;

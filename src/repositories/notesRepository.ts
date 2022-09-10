@@ -26,3 +26,7 @@ export async function findNoteById(noteId:number){
 export async function findAllNotes(userId:number){
     return await client.notes.findMany({where:{userId:userId}})
 }
+
+export async function deleteNote(noteId:number){
+    await client.notes.delete({where:{id:noteId}})
+}
