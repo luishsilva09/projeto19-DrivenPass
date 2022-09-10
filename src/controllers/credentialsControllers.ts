@@ -10,7 +10,7 @@ export async function newCredential(req:Request, res:Response){
     const userInfo:interfaces.IuserData = decodeToken(req.headers.authorization)
     await credentialServices.newCredential(credentialData,userInfo)
 
-    res.status(201).send() 
+    res.status(201).send('Criado com sucesso') 
 }
 
 export async function findCredentials(req:Request, res:Response){

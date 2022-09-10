@@ -10,7 +10,7 @@ export async function newCredential(credentialData:interfaces.ICredentialData,us
         rotule:credentialData.rotule
     } 
     const exist = await credentialRepository.existData(findExistData)
-    if(exist.length !== 0) throw{code:'Conflict',message:'Infomacao incorreta'}
+    if(exist.length !== 0) throw {code:'Conflict',message:'Dados já existentes'}
 
     const encryptPassword = crypt.encrypt(credentialData.password)
     const insertData = {
