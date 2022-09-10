@@ -7,7 +7,7 @@ import { newNoteSchema } from '../schemas/noteSchema';
 const secureNotesRoutes = Router();
 
 secureNotesRoutes.post('/notes/create',validToken,schemaValidate(newNoteSchema),noteController.newNote);
-secureNotesRoutes.get('/notes/getNotes/:noteId');
+secureNotesRoutes.get('/notes/getNotes',validToken,noteController.findNotes);
 secureNotesRoutes.delete('/notes/deleteNote/:noteId')
 
 export default secureNotesRoutes;

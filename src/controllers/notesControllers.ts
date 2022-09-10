@@ -12,7 +12,10 @@ export async function newNote(req:Request,res:Response){
 }
 
 export async function findNotes(req:Request,res:Response){
-    res.status(200).send('Buscado com sucesso')
+    const noteId:number = Number(req.query.noteId);
+    const userInfo:IuserData = decodeToken(req.headers.authorization);
+    const result = await noteService.findNotes(noteId,userInfo.id)
+    res.status(200).send(result)
 }
 
 export async function deleteNote(req:Request,res:Response){
