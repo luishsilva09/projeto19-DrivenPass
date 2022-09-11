@@ -16,11 +16,14 @@
 
 # Description
 
+  DrivenPass will make easier to manage your passwords and going to give you more security and agility.
 
 # Features
 - Signup and signin
-- Create, find and delete credentials
-- Create, find and delete notes
+- Create, find and delete a credential
+- Create, find and delete a note
+- Create, find and delete a cart
+- Create, find and delete wi-fi
 
 ##  API  Reference
 ### Signup
@@ -93,7 +96,7 @@ Resquest:
 ### Find credential:
 
 ```http
-  GET /credential/getCredential?{id=credentialId}
+  GET /credential/getCredential?{credentialId=credentialId}
   ```
 
 |Headers         | Type   | Description                |
@@ -102,7 +105,7 @@ Resquest:
 
 |Query | Type   | Description        |
 |------|--------|--------------------|
-|`id`  |`string`| use credential id  |
+|`credentialId`  |`string`| use credential id  |
 
 - To get all users credential you shuld not use query with creedential id.
 
@@ -177,9 +180,9 @@ Response:
 |------|--------|--------------------|
 |`notesId`  |`string`| use note id |
 
-- To get all users notes you shuld not use query with creedential id.
+- To get all users notes you shuld not use query with note id.
 
-- With you need especfic note you neet to use query with credential id.
+- With you need especfic note you neet to use query with note id.
 
 Response:
 
@@ -191,7 +194,7 @@ Response:
     "userId": 2
   }
 ```
-<p style="color:red"> **With you search for all user credential is going return for you array of object** </p>
+<p style="color:red"> **With you search for all user notes is going return for you array of object** </p>
 </br>
 
 ### Delete note:
@@ -212,9 +215,168 @@ Response:
 
 </br>
 
+
+
+## Cards 
+
+### Create card:
+```http
+  POST /cards/create
+  ```
+</br>
+
+#### Request:
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Body            | Type    | Description               |
+|----------------|-------- |---------------------------|
+|`title`         |`string` |**Reuqired**. card title   |
+|`cardNumber`    |`string` | **Required**. card number |
+|`holderName`    |`string` | **Required**. name in card|
+|`securityCode`  |`string` | **Required**. cvc card    |
+|`expirationDate`|`string` | **Required**. date expiration|
+|`password`      |`string` | **Required**. card password|
+|`isVirtual`     |`bollean`| **Required**. card is vitual|
+|`type`          |`string` | **Required**. credit,debt or both|
+
+`expirationDate format: MM/YY`\
+`type accept: "CREDIT", "DEBT", "BOTH"`\
+</br>
+
+### Find card:
+
+```http
+  GET /cards/getCards?{cardId=cardId}
+  ```
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+|Query | Type   | Description        |
+|------|--------|--------------------|
+|`cardId`  |`string`| use card id |
+
+- To get all users notes you shuld not use query with card id.
+
+- With you need especfic note you neet to use query with card id.
+
+Response:
+```json
+{
+    "id": 4,
+    "title": "tesdndda",
+    "cardNumber": "12344",
+    "holderName": "luis h silva",
+    "securityCode": "033",
+    "expirationDate": "02/23",
+    "password": "1234",
+    "isVirtual": false,
+    "type": "CREDIT",
+    "userId": 2
+  }
+  ```
+<p style="color:red"> **With you search for all user cards is going return for you array of object** </p>
+
+### Delete card:
+```http
+  POST /cards/delete/{cardId}
+  ```
+</br>
+
+#### Request:
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Params          | Type   | Description                |
+|----------------|--------|----------------------------|
+|`cardId`  |`number`|**Reuqired**. card id|
+
+</br>
+
+## Wi-fi
+
+### Create wi-fi:
+```http
+  POST /wifi/create
+  ```
+</br>
+
+#### Request:
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Body            | Type    | Description               |
+|----------------|-------- |---------------------------|
+|`title`         |`string` |**Reuqired**. wifi title   |
+|`networkName`    |`string` | **Required**. name of network |
+|`password`    |`string` | **Required**. wifi password|
+
+</br>
+
+
+### Find wi-fi:
+
+```http
+  GET /wifi/getWifi?{wifiId=wifiId}
+  ```
+
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+|Query | Type   | Description        |
+|------|--------|--------------------|
+|`wifiId`  |`string`| use wifi id |
+
+- To get all users notes you shuld not use query with creedential id.
+
+- With you need especfic note you neet to use query with credential id.
+
+Response:
+```json
+{
+  "id": 1,
+  "title": "vaii",
+  "networkName": "adsdc",
+  "password": "adsad",
+  "userId": 1
+}
+```
+<p style="color:red"> **With you search for all user notes is going return for you array of object** </p>
+
+### Delete wi-fi:
+```http
+  POST /wifi/delete/{wifiId}
+  ```
+</br>
+
+#### Request:
+|Headers         | Type   | Description                |
+|----------------|--------|----------------------------|
+|`Authorization` |`Bearer`|**Reuqired**. Bearer token  |
+
+</br>
+
+|Params          | Type   | Description                |
+|----------------|--------|----------------------------|
+|`wifiId`  |`number`|**Reuqired**. wifi id|
+
+</br>
+
 ##  Environment  Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project in local, you will need to add the following environment variables to your .env file
 
 
 `DATABASE_URL  =  postgres://UserName:Password@Hostname:5432/DatabaseName`
@@ -223,6 +385,7 @@ To run this project, you will need to add the following environment variables to
 
 `SECRET_KEY = string`
 
+You can run this systen using a URL https://projeto-drivenpass-19.herokuapp.com/
 
 ##  Authors
 

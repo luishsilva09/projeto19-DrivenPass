@@ -14,7 +14,7 @@ export async function newCredential(req:Request, res:Response){
 }
 
 export async function findCredentials(req:Request, res:Response){
-    const credentialId:number = Number (req.query.id);
+    const credentialId:number = Number (req.query.credentialId);
     const userInfo:interfaces.IuserData = decodeToken(req.headers.authorization);
     
     const result = await credentialServices.findCredentials(credentialId,userInfo.id)
