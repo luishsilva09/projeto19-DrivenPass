@@ -41,10 +41,10 @@ model Notes {
 model Cards {
   id Int @id @default(autoincrement())
   title String
-  number Int
+  cardNumber String
   holderName String
-  securityCode Int
-  expirationData String
+  securityCode String
+  expirationDate String
   password String
   isVirtual Boolean
   type cardType 

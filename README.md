@@ -82,15 +82,13 @@ Resquest:
 |Body            | Type   | Description                    |
 |----------------|--------|--------------------------------|
 |`title`         |`string`|**Reuqired**. credential title  |
-|`credentialName`|`string`|**Reuqired**. credential name   |
-|`rotule`        |`string`|**Reuqired**. credential rotule |
 |`url`           |`string`|**Reuqired**. site url          |
 |`userName`      |`string`|**Reuqired**. username on site  |
 |`password`      |`string`|**Reuqired**. site password     |
 
 </br>
 
-`title/credentialName/rotule need to be unique for a user`
+`title need to be unique for a user`
 
 ### Find credential:
 
@@ -117,8 +115,6 @@ Response:
     "id": 1,
     "userId": 1,
     "title": "unique ",
-    "credentialName": "unique",
-    "rotule": "unique",
     "url": "https://www.prisma.io/docs/concepts/components/prisma-schema/relations",
     "userName": "luis",
     "password": "1234"
