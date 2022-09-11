@@ -27,3 +27,8 @@ export async function findCards(cardId:number,userId:number){
         return result
     }
 }
+
+export async function deleteCard(cardId:number,userId:number){
+    await findCards(cardId,userId);
+    await cardRepository.deleteCard(cardId)
+}

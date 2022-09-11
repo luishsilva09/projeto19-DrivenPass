@@ -19,5 +19,8 @@ export async function findCards(req:Request, res:Response){
 }
 
 export async function deleteCard(req:Request, res:Response){
+    const userInfo:IuserData = decodeToken(req.headers.authorization);
+    const cardId:number = Number(req.params.cardId);
+    await cardService.deleteCard(cardId,userInfo.id)
     res.status(200).send('deletado com sucesso')
 }

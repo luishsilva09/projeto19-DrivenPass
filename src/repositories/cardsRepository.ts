@@ -24,3 +24,7 @@ export async function findAllCards(userId:number){
 export async function findById(cardId:number){
     return await client.cards.findUnique({where:{id:cardId}})
 }
+
+export async function deleteCard(cardId:number){
+    await client.cards.delete({where:{id:cardId}})
+}
