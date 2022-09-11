@@ -12,3 +12,7 @@ export async function findById(wifiId:number){
 export async function findAllWifi(userId:number){
     return await client.wifi.findMany({where:{userId:userId}})
 }
+
+export async function deleteWifi(wifiId:number){
+    await client.wifi.delete({where:{id:wifiId}})
+}

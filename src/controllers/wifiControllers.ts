@@ -18,6 +18,7 @@ export async function findWifi(req:Request,res:Response){
 }
 export async function deleteWifi(req:Request,res:Response){
     const userInfo: IuserData = decodeToken(req.headers.authorization);
-
+    const wifiId:number = Number(req.params.wifiId)
+    await wifiService.deleteWifi(wifiId,userInfo.id)
     res.status(200).send('deletado com secesso')
 }

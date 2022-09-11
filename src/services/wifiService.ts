@@ -17,6 +17,11 @@ export async function findWifi(wifiId:number,userId:number){
         if(wifiData.userId !== userId) throw{code:'Unauthorized',message:'Não foi possivel acesasr esses dados, voce nao possui permissao'}
         return {...wifiData,password:crypt.decrypt(wifiData.password)}
     }else{
-        return await (await wifiRepository.findAllWifi(userId)).filter(element => element.password = crypt.decrypt(element.password))
+        return (await wifiRepository.findAllWifi(userId)).filter(element => element.password = crypt.decrypt(element.password))
     }
+}
+
+export async function deleteWifi(wifiId:number,userId:number){
+    await findWifi(wifiId,userId);
+    await wifiRepository.deleteWifi(wifiId)
 }
