@@ -9,11 +9,13 @@ export async function newCard(req:Request,res:Response){
     const cardData:ICardData = req.body;
     const result = await cardService.newCard(cardData,userInfo.id);
     res.status(201).send(`criado com sucesso: id: ${result.id}`)
-
 }
 
 export async function findCards(req:Request, res:Response){
-    res.status(200).send('buscar')
+    const userInfo:IuserData = decodeToken(req.headers.authorization);
+    const cardId:number = Number(req.query.cardId);
+    const result = await cardService.findCards(cardId,userInfo.id)
+    res.status(200).send(result)
 }
 
 export async function deleteCard(req:Request, res:Response){

@@ -16,3 +16,11 @@ export async function existData(cardData:ICardData,userId:number){
 export async function insert(cardData:ICardData,userId:number){
     return await client.cards.create({data:{...cardData,userId}})
 }
+
+export async function findAllCards(userId:number){
+    return await client.cards.findMany({where:{userId:userId}})
+}
+
+export async function findById(cardId:number){
+    return await client.cards.findUnique({where:{id:cardId}})
+}

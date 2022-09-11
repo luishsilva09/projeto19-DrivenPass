@@ -14,3 +14,16 @@ export async function newCard(cardData:ICardData,userId:number){
     return await cardRepository.insert(insertData,userId)
 }
 
+export async function findCards(cardId:number,userId:number){
+    if(cardId){
+        const cardData =  await cardRepository.findById(cardId);
+        if(!cardData) throw {code:'NotFound',message:'dado nao encontrado'}
+        if(cardData.userId !==userId) throw{code:'Unauthorized',message:'Não foi possivel acesasr esses dados, voce nao possui permissao'}
+        return {...cardData,password:crypt.decrypt(cardData.password),securityCode:crypt.decrypt(cardData.securityCode)}
+    }else{
+        const data = (await cardRepository.findAllCards(userId)).filter(element => element.password = crypt.decrypt(element.password))
+        const result = data.filter(element => element.securityCode = crypt.decrypt(element.securityCode))
+        
+        return result
+    }
+}
