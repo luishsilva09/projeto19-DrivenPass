@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/luishsilva09/projeto19-DrivenPass#readme",
   "dependencies": {
+    "@joi/date": "^2.1.0",
     "@prisma/client": "^4.3.1",
     "@types/cryptr": "^4.0.1",
     "bcrypt": "^5.0.1",
