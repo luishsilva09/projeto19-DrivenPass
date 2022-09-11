@@ -11,8 +11,13 @@ export async function newWifi(req:Request,res:Response){
     res.status(201).send(`criado com sucesso: id: ${result.id}`)
 }
 export async function findWifi(req:Request,res:Response){
-    res.status(200).send('resultado')
+    const userInfo: IuserData = decodeToken(req.headers.authorization);
+    const wifiId:number = Number(req.query.wifiId);
+    const result = await wifiService.findWifi(wifiId,userInfo.id)
+    res.status(200).send(result)
 }
 export async function deleteWifi(req:Request,res:Response){
+    const userInfo: IuserData = decodeToken(req.headers.authorization);
+
     res.status(200).send('deletado com secesso')
 }
